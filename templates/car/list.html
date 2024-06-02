@@ -1,0 +1,27 @@
+{% extends 'layout/main.html' %}
+
+{% block content %}
+    <h1 class="mb-4 text-center">All Cars</h1>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Length</th>
+            <th>Weight</th>
+            <th>Velocity</th>
+            <th>Color</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for car in cars %}
+            <tr>
+                <td>{{ car.id }}</td>
+                <td>{{ car.length }}</td>
+                <td>{{ car.weight }}</td>
+                <td>{{ car.velocity }}</td>
+                <td>{{ car.color }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
