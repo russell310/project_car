@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 from django.urls import reverse
 from .factories import CarFactory
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree as ET  # nosec : B405
 
 
 class CarModelTest(TestCase):
@@ -46,7 +46,8 @@ class CarListViewTest(TestCase):
         self.assertEqual(response['Content-Type'], 'application/xml')
         self.assertEqual(response['Content-Disposition'], 'attachment; filename="cars.xml"')
 
-        tree = ET.fromstring(response.content)
+        tree = ET.fromstring(
+            response.content)  # nosec : B314 (This is safe since we're parsing our own generated content)
         self.assertEqual(tree.tag, 'cars_list')
         self.assertEqual(len(tree.findall('car')), 15)
 

@@ -1,0 +1,16 @@
+[flake8]
+# Ignore specific errors and warnings (e.g., E501 for line length, W503 for line breaks before binary operators)
+
+# Maximum allowed line length
+max-line-length = 120
+
+# Exclude specific directories from being checked
+exclude =
+    .git,
+    __pycache__,
+    venv,
+    env,
+    migrations
+
+# Additional settings
+max-complexity = 10

@@ -1,7 +1,7 @@
 from django_filters.views import FilterView
 from .models import Car
 from .filters import CarFilter
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree as ET  # nosec: B405
 from django.http import HttpResponse
 
 
@@ -26,7 +26,7 @@ class CarListView(FilterView):
 
     def export_to_xml(self):
         cars = self.filterset_class(self.request.GET, queryset=self.get_queryset()).qs
-        root = ET.Element("cars_list")
+        root = ET.Element("cars_list")  # nosec: B320 (This is constructing, not parsing)
         for car in cars:
             car_elem = ET.SubElement(root, "car")
             ET.SubElement(car_elem, "id").text = str(car.id)
