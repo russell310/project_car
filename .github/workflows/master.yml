@@ -1,0 +1,39 @@
+name: Django Tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Create .env file
+      run: |
+        echo "DEBUG=False" >> .env
+        echo "SECRET_KEY=your_secret_key" >> .env
+        echo "DATABASE_URL=sqlite:///db.sqlite3" >> .env
+        echo "ALLOWED_HOSTS=.localhost,127.0.0.1" >> .env
+        # Add other environment variables as needed
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements-local.txt
+
+    - name: Run tests
+      run: |
+        python manage.py test
