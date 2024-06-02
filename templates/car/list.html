@@ -1,7 +1,22 @@
 {% extends 'layout/main.html' %}
+{% load widget_tweaks %}
 
 {% block content %}
     <h1 class="mb-4 text-center">All Cars</h1>
+
+    <form method="get" class=" p-3 bg-dark text-white rounded">
+        <div class="row g-3 align-items-center">
+            {% for field in filter.form %}
+                <div class="col">
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                    {{ field|add_class:"form-control bg-dark text-white" }}
+                </div>
+            {% endfor %}
+            <div class="col d-flex align-items-end mt-5">
+                <button type="submit" class="btn btn-primary me-2">Filter</button>
+            </div>
+        </div>
+    </form>
     <table class="table table-bordered">
         <thead>
         <tr>
