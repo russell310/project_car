@@ -113,7 +113,7 @@ locust -f car/locustfile.py --host=http://localhost:8000
 
 ### Open Locust Web Interface
 
-Open your web browser and go to `http://127.0.0.1:8089`.
+Open your web browser and go to http://localhost:8089.
 
 ### Configure and Start the Load Test
 
