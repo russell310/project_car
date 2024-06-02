@@ -12,6 +12,7 @@ class CarListView(FilterView):
     """
     model = Car
     template_name = 'car/list.html'
+    paginate_by = 10
     ordering = ('id',)
     context_object_name = 'cars'
     filterset_class = CarFilter
